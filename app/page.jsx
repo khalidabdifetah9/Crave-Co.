@@ -1,12 +1,16 @@
 import Hero from "@/Components/landig/hero";
 import Info from "@/Components/landig/info";
 import Services from "@/Components/landig/service";
+import Menu from "@/Components/landig/menu";
+import History from "@/Components/landig/history";
 export default function Home() {
   return (
     <div>
       <Hero/>
       <Info/>
       <Services/>
+      <Menu/>
+      <History/>
     </div>
   );
 }
