@@ -69,7 +69,6 @@ export default function Menu() {
     >
       {/* Sticky viewport */}
       <div className="sticky top-0 w-full h-screen overflow-hidden pt-50 flex items-center justify-center z-20">
-        {/* Expanded Orbital Ring Container */}
         <div className="relative w-[95vmin] h-[95vmin] flex items-center justify-center">
           {images.map((img, i) => {
             const angleDeg = (i / total) * 360 + rotation;
@@ -81,7 +80,6 @@ export default function Menu() {
                 style={{
                   width: "clamp(90px, 16vmin, 160px)",
                   height: "clamp(80px, 12vmin, 140px)",
-                  /* Increased translateY expands the circle outwards so images don't touch */
                   transform: `rotate(${angleDeg}deg) translateY(-400%)`,
                 }}
               >
@@ -114,13 +112,6 @@ export default function Menu() {
             <p className="mt-4 md:mt-6 text-black text-[10px] md:text-xs font-semibold uppercase tracking-wider leading-relaxed max-w-[360px]">
              Discover a menu inspired by the heart of Italy, where timeless recipes meet fresh ingredients and a little Crave & Co. creativity.
             </p>
-
-            <a
-              href="#contact"
-              className="mt-6 md:mt-8 inline-block bg-[#eec201] text-black text-[10px] md:text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full hover:bg-black hover:text-white transition-colors duration-300"
-            >
-              Contact Us
-            </a>
           </div>
         </div>
       </div>

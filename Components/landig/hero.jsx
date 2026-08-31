@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useCallback } from "react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const videoRef = useRef(null);
@@ -24,15 +25,68 @@ export default function Hero() {
     }
   };
 
+  const titleText = "CRAVE&CO.";
+
+  // Animation variants
+  const titleContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { y: "100%", opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.33, 1, 0.68, 1],
+      },
+    },
+  };
+
+  const revealFromBottom = {
+    hidden: { y: 100, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.33, 1, 0.68, 1],
+        delay: 0.4,
+      },
+    },
+  };
+
   return (
     <section className="w-full px-6 pt-35">
-      <div className="w-full relative my-2 flex">
-        <h1 className="text-[#fcd301] text-[16vw] font-extrabold  leading-[0.65] tracking-tighter uppercase transform origin-center select-none">
-          <span className="inline-block">CRAVE&CO.</span>
-        </h1>
+      <div className="w-full relative my-2 flex overflow-hidden">
+        <motion.h1
+          variants={titleContainerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-[#fcd301] text-[16vw] font-extrabold leading-[0.65] tracking-tighter uppercase transform origin-center select-none flex"
+        >
+          {titleText.split("").map((char, index) => (
+            <span key={index} className="inline-block overflow-hidden">
+              <motion.span variants={letterVariants} className="inline-block">
+                {char}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h1>
       </div>
 
-      <div className="w-full flex flex-col sm:flex-row items-start sm:items-end justify-between mt-12 mb-6 gap-4">
+      <motion.div
+        variants={revealFromBottom}
+        initial="hidden"
+        animate="visible"
+        className="w-full flex flex-col sm:flex-row items-start sm:items-end justify-between mt-12 mb-6 gap-4"
+      >
         <div className="flex items-center gap-1.5">
           <svg
             width="16"
@@ -48,9 +102,14 @@ export default function Hero() {
             &mdash; CERTIFIED PARTNER
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-full grid grid-cols-1 max-h-300 md:grid-cols-2 gap-6">
+      <motion.div
+        variants={revealFromBottom}
+        initial="hidden"
+        animate="visible"
+        className="w-full grid grid-cols-1 max-h-300 md:grid-cols-2 gap-6"
+      >
         <div className="group relative w-full aspect-[3/3] min-h-[300px] rounded-2xl overflow-hidden cursor-pointer bg-black">
           <Image
             src="/yellow_chef_two.jpg"
@@ -84,7 +143,7 @@ export default function Hero() {
             <source src="/cooking.mp4" type="video/mp4" />
           </video>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
