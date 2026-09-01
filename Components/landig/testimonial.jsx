@@ -65,41 +65,31 @@ export default function Testimonial() {
     offset: ["start start", "end end"],
   });
 
-  return (
-    <section
-      ref={containerRef}
-      className="relative w-full text-black min-h-screen"
-      style={{ height: isMobile ? 'auto' : `${testimonials.length * 100}vh` }}
-    >
-      <div className={`${isMobile ? 'relative' : 'sticky top-0 h-screen'} w-full flex flex-col justify-between overflow-hidden px-4 sm:px-6 py-8 sm:py-12 md:py-16`}>
-        <div className="max-w-[1400px] w-full mx-auto">
+  // Mobile view - simple vertical layout without animations
+  if (isMobile) {
+    return (
+      <section className="relative w-full bg-white text-black py-12">
+        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2.5 h-2.5 rounded-full bg-[#eec201]" />
-            <span className="text-sm uppercase md:text-base font-medium tracking-wide">
+            <span className="text-sm uppercase font-medium tracking-wide">
               Testimonial
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight uppercase leading-none">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase leading-none mb-8">
             WHAT CLIENTS SAY
           </h2>
-        </div>
 
-        <div className={`relative max-w-[900px] w-full mx-auto ${isMobile ? 'mt-8 space-y-6' : 'h-[420px] sm:h-[380px] flex items-center justify-center mb-8'}`}>
-          {isMobile ? (
-            // Mobile view - stacked cards
-            testimonials.map((item) => (
+          <div className="space-y-6">
+            {testimonials.map((item) => (
               <div
                 key={item.id}
-                className="w-full bg-white p-4 sm:p-6 shadow-2xl flex flex-col gap-4 rounded-xs"
-                style={{
-                  rotate: item.rotation,
-                  transform: `translateX(${item.xOffset})`,
-                }}
+                className="w-full bg-white p-4 sm:p-6 shadow-lg flex flex-col gap-4 rounded-sm border border-gray-100"
               >
                 <div className="w-full flex flex-col justify-between">
-                  <p className="text-base sm:text-lg md:text-xl font-semibold leading-snug tracking-tight text-black mb-4">
-                    {item.quote}
+                  <p className="text-base sm:text-lg font-semibold leading-snug tracking-tight text-black mb-4">
+                    "{item.quote}"
                   </p>
 
                   <div>
@@ -112,39 +102,64 @@ export default function Testimonial() {
                   </div>
                 </div>
 
-                <div className="w-full aspect-[4/3] relative overflow-hidden bg-gray-100">
+                <div className="w-full aspect-[4/3] relative overflow-hidden bg-gray-100 rounded-sm">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 45vw"
+                    sizes="100vw"
                     priority={item.id === 1}
                   />
                 </div>
               </div>
-            ))
-          ) : (
-            // Desktop view - animated cards
-            testimonials.map((item, index) => {
-              const total = testimonials.length;
-              const step = 1 / total;
-              const start = index * step;
-              const end = (index + 1) * step;
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-              return (
-                <Card
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  total={total}
-                  progress={scrollYProgress}
-                  start={start}
-                  end={end}
-                />
-              );
-            })
-          )}
+  // Desktop view - with scroll animations
+  return (
+    <section
+      ref={containerRef}
+      className="relative w-full text-black"
+      style={{ height: `${testimonials.length * 100}vh` }}
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden px-6 py-12 md:py-16">
+        <div className="max-w-[1400px] w-full mx-auto">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#eec201]" />
+            <span className="text-sm uppercase md:text-base font-medium tracking-wide">
+              Testimonial
+            </span>
+          </div>
+
+          <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight uppercase leading-none">
+            WHAT CLIENTS SAY
+          </h2>
+        </div>
+
+        <div className="relative max-w-[900px] w-full mx-auto h-[420px] sm:h-[380px] flex items-center justify-center mb-8">
+          {testimonials.map((item, index) => {
+            const total = testimonials.length;
+            const step = 1 / total;
+            const start = index * step;
+            const end = (index + 1) * step;
+
+            return (
+              <Card
+                key={item.id}
+                item={item}
+                index={index}
+                total={total}
+                progress={scrollYProgress}
+                start={start}
+                end={end}
+              />
+            );
+          })}
         </div>
 
         <div className="hidden md:block" />
