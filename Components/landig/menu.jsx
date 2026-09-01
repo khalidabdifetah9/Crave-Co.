@@ -64,7 +64,7 @@ export default function Menu() {
   return (
     <section
       ref={wrapperRef}
-      className="relative w-full z-20 "
+      className="relative w-full z-20"
       style={{ height: "650vh" }}
     >
       {/* Sticky viewport */}
@@ -76,13 +76,25 @@ export default function Menu() {
             return (
               <div
                 key={i}
-                className="absolute origin-center"
+                className="absolute origin-center transition-[transform] duration-0"
                 style={{
                   width: "clamp(90px, 16vmin, 160px)",
                   height: "clamp(80px, 12vmin, 140px)",
-                  transform: `rotate(${angleDeg}deg) translateY(-400%)`,
+                  transform: `rotate(${angleDeg}deg) translateY(var(--circle-radius, -400%))`,
                 }}
               >
+                <style jsx>{`
+                  @media (max-width: 767px) {
+                    div {
+                      --circle-radius: -250%;
+                    }
+                  }
+                  @media (min-width: 768px) {
+                    div {
+                      --circle-radius: -400%;
+                    }
+                  }
+                `}</style>
                 <div className="relative w-full h-full rounded-2xl md:rounded-xl overflow-hidden shadow-md border border-black/5 bg-neutral-100">
                   <Image
                     src={img.src}
@@ -96,8 +108,7 @@ export default function Menu() {
             );
           })}
 
-          {/* Center Content */}
-          <div className="relative z-30 flex flex-col items-center pb-50 text-center px-4 max-w-[550px]">
+          <div className="relative z-30 flex flex-col items-center md:pb-50 text-center px-4 max-w-[550px]">
             <h2
               className="text-black font-black leading-none tracking-tight uppercase"
               style={{
@@ -110,7 +121,7 @@ export default function Menu() {
             </h2>
 
             <p className="mt-4 md:mt-6 text-black text-[10px] md:text-xs font-semibold uppercase tracking-wider leading-relaxed max-w-[360px]">
-             Discover a menu inspired by the heart of Italy, where timeless recipes meet fresh ingredients and a little Crave & Co. creativity.
+              Discover a menu inspired by the heart of Italy, where timeless recipes meet fresh ingredients and a little Crave & Co. creativity.
             </p>
           </div>
         </div>

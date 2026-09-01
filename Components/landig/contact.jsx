@@ -4,16 +4,16 @@ import React from 'react';
 
 export default function Contact() {
   return (
-    <section className="bg-[#fcd301] text-black relative z-10 min-h-screen flex items-center justify-center px-6 md:px-12 font-sans">
-      <div className=" bg-white w-full  py-30 px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 rounded-3xl">
+    <section className="bg-[#fcd301] text-black relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 font-sans py-12 md:py-0">
+      <div className="bg-white w-full py-10 px-6 sm:px-10 lg:py-30 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 rounded-2xl sm:rounded-3xl">
         
         <div className="flex flex-col items-start space-y-4">
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-semibold tracking-tight uppercase leading-[0.95] text-black">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-semibold tracking-tight uppercase leading-[0.95] text-black">
             Make Reservation <br />
           </h1>
         </div>
 
-        <div className="bg-white rounded-3xl p-8 sm:p-10  w-full max-w-4xl ml-auto">
+        <div className="bg-white rounded-3xl p-0 sm:p-6 lg:p-8 sm:p-10 w-full max-w-4xl lg:ml-auto">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
             
             <div>

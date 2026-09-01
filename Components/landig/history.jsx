@@ -35,7 +35,6 @@ export default function History() {
     },
   };
 
-  // Helper function to render text character-by-character while maintaining word wraps
   const renderAnimatedText = (text) => {
     return text.split(" ").map((word, wordIdx) => (
       <span key={wordIdx} className="inline-block whitespace-nowrap mr-[0.25em]">
@@ -55,7 +54,6 @@ export default function History() {
 
   return (
     <section className="relative w-full h-250 bg-[#fcd301] -top-60 z-100 flex flex-col justify-between p-8 md:p-16 lg:p-24 overflow-hidden select-none">
-      {/* Background Grid Lines */}
       <div className="absolute inset-0 pointer-events-none grid grid-cols-5 w-full h-full opacity-20">
         <div className="border-r border-neutral-700"></div>
         <div className="border-r border-neutral-700"></div>
@@ -65,12 +63,9 @@ export default function History() {
       </div>
 
       <div className="relative z-10 w-full h-full flex flex-col justify-between my-auto">
-        {/* Top Tag & Main Heading Section */}
         <div className="max-w-5xl mt-12 md:mt-20">
-          {/* Subtitle / Tag */}
           <div className="flex items-center gap-2 mb-6"></div>
 
-          {/* Main Headline */}
           <motion.h1
             variants={containerVariants}
             initial="hidden"
@@ -82,7 +77,6 @@ export default function History() {
           </motion.h1>
         </div>
 
-        {/* Bottom Paragraph Section - Aligned to the Right */}
         <div className="w-full flex justify-end mt-20 md:mt-32">
           <div className="max-w-md text-right text-black text-sm md:text-base leading-[1] space-y-3 font-normal">
             <motion.p

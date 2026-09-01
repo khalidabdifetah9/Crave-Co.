@@ -131,7 +131,7 @@ function Card({ item, index, progress, start, end }) {
     >
       <div className="w-full md:w-[55%] flex flex-col justify-between h-full">
         <p className="text-xl sm:text-2xl md:text-3xl font-semibold leading-snug tracking-tight text-black mb-8">
-          "{item.quote}"
+          {item.quote}
         </p>
 
         <div>
