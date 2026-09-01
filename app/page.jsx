@@ -13,8 +13,8 @@ export default function Home() {
     <div className="relative">
       {/* Main page content stacked on top */}
       <div className="relative z-10 bg-[#f9f4de]">
-        {/* <Hero />
-        <Info />
+        <Hero />
+        {/* <Info />
         <Services />
         <Menu />
         <History />
