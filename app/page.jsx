@@ -17,10 +17,7 @@ export default function Home() {
         <Services />
         <Menu />
         <History />
-        {/* Hide Testimonial on mobile, show on larger screens */}
-        <div className="hidden md:block">
-          <Testimonial />
-        </div>
+        {/* <Testimonial /> */}
         <FAQ />
         <Contact />
       </div>
