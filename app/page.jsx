@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <Info />
         <Services />
-        {/* <Menu />
-        <History />
+        <Menu />
+        {/* <History />
         <Testimonial />
         <FAQ />
         <Contact /> */}

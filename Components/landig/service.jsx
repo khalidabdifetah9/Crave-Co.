@@ -35,7 +35,7 @@ const services = [
 ];
 
 export default function Services() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -55,27 +55,28 @@ export default function Services() {
   return (
     <section ref={containerRef} className="w-full h-[400vh] bg-[#fcd301] relative">
       
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="max-w-[1400px] w-full mx-auto px-6 py-24 md:py-32">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div className="sticky top-0 h-screen w-full flex items-center overflow-y-auto">
+        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
             
+            {/* Left Column - Text */}
             <div className="w-full lg:w-[55%]">
-              <p className="text-black text-lg md:text-xl font-medium mb-12 md:mb-16">
+              <p className="text-black text-base sm:text-lg md:text-xl font-medium mb-4 md:mb-6 lg:mb-8">
                 Services
               </p>
 
-              <div className="flex flex-col gap-2 md:gap-4">
+              <div className="flex flex-col gap-0 sm:gap-1 md:gap-2 lg:gap-4">
                 {services.map((service, index) => (
                   <div
                     key={service.id}
-                    className="py-3 md:py-5 cursor-default"
+                    className="py-1 sm:py-2 md:py-3 lg:py-5 cursor-default"
                   >
                     <motion.h2
                       animate={{
                         color: index === activeIndex ? "#000000" : "rgba(255, 255, 255, 0.4)",
                       }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight select-none"
+                      className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.2] sm:leading-[1.1] md:leading-[1.05] lg:leading-[0.95] tracking-tight select-none"
                     >
                       {service.title}
                     </motion.h2>
@@ -84,6 +85,7 @@ export default function Services() {
               </div>
             </div>
 
+            {/* Right Column - Image and Description */}
             <div className="w-full lg:w-[45%]">
               
               <div className="relative w-full aspect-square overflow-hidden">
@@ -112,7 +114,7 @@ export default function Services() {
                 ))}
               </div>
 
-              <div className="mt-6 min-h-[80px] relative">
+              <div className="mt-3 md:mt-4 lg:mt-6 min-h-[50px] md:min-h-[60px] lg:min-h-[80px] relative">
                 {services.map((service, index) => (
                   <motion.p
                     key={service.id}
@@ -122,7 +124,7 @@ export default function Services() {
                       y: index === activeIndex ? 0 : 8,
                     }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="text-black text-base md:text-lg font-medium leading-snug absolute top-0 left-0 right-0"
+                    className="text-black text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug absolute top-0 left-0 right-0"
                     style={{
                       pointerEvents: index === activeIndex ? "auto" : "none",
                     }}
