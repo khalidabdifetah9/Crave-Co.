@@ -55,8 +55,8 @@ export default function Services() {
   return (
     <section ref={containerRef} className="w-full h-[400vh] bg-[#fcd301] relative">
       
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-y-auto">
-        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32">
+      <div className="sticky top-0 h-screen w-full flex items-start pt-16 sm:pt-20 md:pt-24 overflow-y-auto">
+        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 pb-8 sm:pb-12 md:pb-16 lg:pb-24 xl:pb-32">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
             
             {/* Left Column - Text */}
