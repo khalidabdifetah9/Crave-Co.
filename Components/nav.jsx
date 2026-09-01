@@ -65,7 +65,6 @@ export default function Nav() {
 
         <div className="hidden sm:flex flex-shrink-0 space-x-3 md:space-x-4">
           <button
-            href="#reservation"
             onClick={handleReservationClick}
             className="inline-block uppercase bg-[#eec201] text-white text-[10px] md:text-xs font-bold tracking-wider px-4 md:px-5 py-2 md:py-2.5 hover:opacity-90 transition-opacity duration-200 cursor-pointer"
           >
