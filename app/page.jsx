@@ -11,19 +11,20 @@ import Footer from "@/Components/landig/footer";
 export default function Home() {
   return (
     <div className="relative">
-      {/* Main page content stacked on top */}
       <div className="relative z-10 bg-[#f9f4de]">
         <Hero />
         <Info />
         <Services />
         <Menu />
         <History />
-        <Testimonial />
-        {/* <FAQ />
-        <Contact /> */}
+        {/* Hide Testimonial on mobile, show on larger screens */}
+        <div className="hidden md:block">
+          <Testimonial />
+        </div>
+        <FAQ />
+        <Contact />
       </div>
 
-      {/* Sticky footer underneath */}
       <Footer />
     </div>
   );

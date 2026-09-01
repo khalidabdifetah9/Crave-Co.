@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -49,82 +49,16 @@ const testimonials = [
 
 export default function Testimonial() {
   const containerRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Mobile view - simple vertical layout without animations
-  if (isMobile) {
-    return (
-      <section className="relative w-full bg-white text-black py-12">
-        <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#eec201]" />
-            <span className="text-sm uppercase font-medium tracking-wide">
-              Testimonial
-            </span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase leading-none mb-8">
-            WHAT CLIENTS SAY
-          </h2>
-
-          <div className="space-y-6">
-            {testimonials.map((item) => (
-              <div
-                key={item.id}
-                className="w-full bg-white p-4 sm:p-6 shadow-lg flex flex-col gap-4 rounded-sm border border-gray-100"
-              >
-                <div className="w-full flex flex-col justify-between">
-                  <p className="text-base sm:text-lg font-semibold leading-snug tracking-tight text-black mb-4">
-                    "{item.quote}"
-                  </p>
-
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-black leading-tight">
-                      {item.name}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-gray-500 font-medium mt-1">
-                      {item.role}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="w-full aspect-[4/3] relative overflow-hidden bg-gray-100 rounded-sm">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                    priority={item.id === 1}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop view - with scroll animations
   return (
     <section
       ref={containerRef}
-      className="relative w-full text-black"
+      className="relative w-full  text-black"
       style={{ height: `${testimonials.length * 100}vh` }}
     >
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden px-6 py-12 md:py-16">
@@ -136,7 +70,7 @@ export default function Testimonial() {
             </span>
           </div>
 
-          <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight uppercase leading-none">
+          <h2 className="text-5xl sm:text-7xl  md:text-8xl lg:text-9xl font-bold tracking-tight uppercase leading-none">
             WHAT CLIENTS SAY
           </h2>
         </div>
@@ -193,7 +127,7 @@ function Card({ item, index, progress, start, end }) {
         x: item.xOffset,
         zIndex: index + 1,
       }}
-      className="absolute w-full bg-white p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-8 items-center justify-between rounded-xs"
+      className="absolute w-full bg-white  p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-8 items-center justify-between rounded-xs"
     >
       <div className="w-full md:w-[55%] flex flex-col justify-between h-full">
         <p className="text-xl sm:text-2xl md:text-3xl font-semibold leading-snug tracking-tight text-black mb-8">
