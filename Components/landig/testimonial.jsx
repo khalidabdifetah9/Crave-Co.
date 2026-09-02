@@ -59,10 +59,10 @@ export default function Testimonial() {
     <section
       ref={containerRef}
       className="relative w-full text-black"
-      style={{ height: `${testimonials.length * 100}vh` }}
+      style={{ height: `${testimonials.length * 80}vh` }}
     >
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden px-4 sm:px-6 py-8 md:py-16">
-        <div className="max-w-[1400px] w-full mx-auto">
+        <div className="max-w-350 w-full mx-auto">
           <div className="flex items-center gap-2 mb-2 sm:mb-4">
             <span className="w-2.5 h-2.5 rounded-full bg-[#eec201]" />
             <span className="text-xs uppercase md:text-base font-medium tracking-wide">
@@ -75,7 +75,7 @@ export default function Testimonial() {
           </h2>
         </div>
 
-        <div className="relative max-w-[900px] w-full mx-auto h-[480px] sm:h-[420px] flex items-center justify-center mb-4 sm:mb-8 pointer-events-none">
+        <div className="relative max-w-225 w-full mx-auto h-120 sm:h-105 flex items-center justify-center mb-4 sm:mb-8">
           {testimonials.map((item, index) => {
             const total = testimonials.length;
             const step = 1 / total;
@@ -102,24 +102,24 @@ export default function Testimonial() {
 }
 
 function Card({ item, index, progress, start, end }) {
-  // Smooth Y-axis movement into place
+  const safeStart = Math.max(0, start - 0.05);
+  const safeEnd = Math.min(1, end + 0.1);
+
   const y = useTransform(
     progress,
-    [start, end],
-    [index === 0 ? 0 : 500, 0]
+    [safeStart, start, end],
+    [index === 0 ? 0 : 400, index === 0 ? 0 : 400, 0]
   );
 
-  // Slight shrink effect when scrolling past
   const scale = useTransform(
     progress,
-    [end, end + 0.25],
+    [end, safeEnd],
     [1, 0.95]
   );
 
-  // Smooth opacity fade on card entry
   const opacity = useTransform(
     progress,
-    [start - 0.08, start + 0.05],
+    [safeStart, start + 0.02],
     [index === 0 ? 1 : 0, 1]
   );
 
@@ -131,13 +131,12 @@ function Card({ item, index, progress, start, end }) {
         opacity,
         rotate: item.rotation,
         x: item.xOffset,
-        zIndex: index + 10,
+        zIndex: index + 1,
         willChange: "transform, opacity",
-        transformStyle: "preserve-3d",
       }}
-      className="pointer-events-auto absolute w-full bg-white p-5 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-4 sm:gap-8 items-center justify-between rounded-xs max-h-[75vh] isolate"
+      className="absolute w-full bg-white p-5 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-4 sm:gap-8 items-center justify-between rounded-xs max-h-[80vh] overflow-y-auto"
     >
-      <div className="w-full md:w-[55%] flex flex-col justify-between h-full bg-white">
+      <div className="w-full md:w-[55%] flex flex-col justify-between h-full">
         <p className="text-base sm:text-2xl md:text-3xl font-semibold leading-snug tracking-tight text-black mb-4 sm:mb-8">
           {item.quote}
         </p>
