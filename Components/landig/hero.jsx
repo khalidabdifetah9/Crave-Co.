@@ -138,7 +138,7 @@ export default function Hero() {
             muted
             playsInline
             className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:blur-sm group-hover:scale-105"
-            poster="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1200&auto=format&fit=crop"
+            poster="/yellow_chef.jpg"
           >
             <source src="/cooking.mp4" type="video/mp4" />
           </video>
