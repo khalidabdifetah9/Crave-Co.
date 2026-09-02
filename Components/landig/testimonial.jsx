@@ -59,7 +59,7 @@ export default function Testimonial() {
     <section
       ref={containerRef}
       className="relative w-full text-black"
-      style={{ height: `${testimonials.length * 100}%` }}
+      style={{ height: `${testimonials.length * 100}vh` }}
     >
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden px-4 sm:px-6 py-8 md:py-16">
         <div className="max-w-[1400px] w-full mx-auto">
@@ -102,25 +102,24 @@ export default function Testimonial() {
 }
 
 function Card({ item, index, progress, start, end }) {
-  const safeStart = Math.max(0, start - 0.05);
-  const safeEnd = Math.min(1, end + 0.1);
-
+  // Smooth Y-axis movement into place
   const y = useTransform(
     progress,
-    [safeStart, start, end],
-    [index === 0 ? 0 : 300, index === 0 ? 0 : 300, 0]
+    [start, end],
+    [index === 0 ? 0 : 500, 0]
   );
 
+  // Slight shrink effect when scrolling past
   const scale = useTransform(
     progress,
-    [end, safeEnd],
+    [end, end + 0.25],
     [1, 0.95]
   );
 
-  // Quick crisp opacity snap so card is fully opaque standard white before overlapping
+  // Smooth opacity fade on card entry
   const opacity = useTransform(
     progress,
-    [safeStart, safeStart + 0.01],
+    [start - 0.08, start + 0.05],
     [index === 0 ? 1 : 0, 1]
   );
 
@@ -133,11 +132,10 @@ function Card({ item, index, progress, start, end }) {
         rotate: item.rotation,
         x: item.xOffset,
         zIndex: index + 10,
-        willChange: "transform",
+        willChange: "transform, opacity",
         transformStyle: "preserve-3d",
-        backfaceVisibility: "hidden",
       }}
-      className="pointer-events-auto absolute w-full !bg-white p-5 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-4 sm:gap-8 items-center justify-between rounded-xs max-h-[75vh] isolate"
+      className="pointer-events-auto absolute w-full bg-white p-5 sm:p-10 shadow-2xl flex flex-col md:flex-row gap-4 sm:gap-8 items-center justify-between rounded-xs max-h-[75vh] isolate"
     >
       <div className="w-full md:w-[55%] flex flex-col justify-between h-full bg-white">
         <p className="text-base sm:text-2xl md:text-3xl font-semibold leading-snug tracking-tight text-black mb-4 sm:mb-8">
