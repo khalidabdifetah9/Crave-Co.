@@ -158,7 +158,7 @@ function Card({ item, index, progress, start, end }) {
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 45vw"
-          priority={index === 0}
+          priority
         />
       </div>
     </motion.div>
