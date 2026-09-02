@@ -183,12 +183,15 @@ export default function Menu() {
       {/* MOBILE LAYOUT: Vertical Scroll */}
       <section className="block md:hidden w-full bg-white text-black">
         {/* 1. Hero Chef Image */}
-        <div className="relative w-full h-[60vh] bg-black overflow-hidden">
+        <div className="relative w-full h-[60vh] overflow-hidden">
           <Image
             src="/yellow_chef_three.jpg"
             alt="Chef Hero"
             fill
             priority
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, 40vw"
             className="object-cover object-center"
           />
         </div>
@@ -279,13 +282,16 @@ export default function Menu() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="relative h-full w-[40vw] border-r border-black/10 overflow-hidden bg-black"
+                className="relative h-full w-[40vw] border-r border-black/10 overflow-hidden"
               >
                 <Image
                   src="/yellow_chef_three.jpg"
                   alt="Architecture Hero"
                   fill
                   priority
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes="40vw"
                   className="object-cover"
                 />
               </motion.div>
@@ -360,6 +366,7 @@ export default function Menu() {
                     alt={item.name}
                     fill
                     className="object-cover object-top"
+                    sizes="33vw"
                   />
                 </div>
               </div>
