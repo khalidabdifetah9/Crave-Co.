@@ -123,6 +123,7 @@ export default function Hero() {
             alt="Portrait close-up hover"
             fill
             className="object-cover opacity-0 transition-all duration-700 ease-in-out group-hover:opacity-100 group-hover:scale-105"
+            priority
           />
         </div>
 
@@ -134,6 +135,7 @@ export default function Hero() {
           <video
             ref={setVideoRef}
             autoPlay
+            preload="auto"
             loop
             muted
             playsInline

@@ -108,7 +108,7 @@ export default function Services() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 45vw"
-                      priority={index === 0}
+                      priority
                     />
                   </motion.div>
                 ))}

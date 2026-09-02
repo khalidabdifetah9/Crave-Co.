@@ -40,7 +40,7 @@ export default function Menu() {
       const totalScrollable = wrapperHeight - windowHeight;
       const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
 
-      targetRotation = progress * 240; // Controlled slow rotation angle
+      targetRotation = progress * 240;
     };
 
     const updateAnimation = () => {
@@ -102,6 +102,7 @@ export default function Menu() {
                     fill
                     className="object-cover"
                     sizes="140px"
+                    priority
                   />
                 </div>
               </div>
