@@ -179,104 +179,194 @@ export default function Menu() {
   };
 
   return (
-    <section ref={targetRef} className="relative h-[400vh]">
-      <div className="sticky top-0 flex h-screen w-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex h-full">
-          {/* EXACT UNTOUCHED DESKTOP HERO CONTAINER */}
-          <div className="relative flex h-full w-screen flex-shrink-0">
-            <motion.div
-              variants={imageRevealVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative h-full w-[40vw] border-r border-black/10 overflow-hidden bg-black"
-            >
-              <Image
-                src="/yellow_chef_three.jpg"
-                alt="Architecture Hero"
-                fill
-                priority
-                className="object-cover"
-              />
-            </motion.div>
+    <>
+      {/* MOBILE LAYOUT: Vertical Scroll */}
+      <section className="block md:hidden w-full bg-white text-black">
+        {/* 1. Hero Chef Image */}
+        <div className="relative w-full h-[60vh] bg-black overflow-hidden">
+          <Image
+            src="/yellow_chef_three.jpg"
+            alt="Chef Hero"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </div>
 
-            <div className="grid h-full w-[60vw] grid-cols-2 grid-rows-2 border-black/10 text-black">
-              <div className="col-span-2 border-b border-black/10 p-8 md:p-12">
-                <motion.h1
-                  variants={delayedTextContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="text-5xl text-[#ebc511] font-extrabold uppercase leading-none tracking-tight md:text-[8vw]"
-                >
-                  {renderAnimatedText("Explore Our Menu")}
-                </motion.h1>
-              </div>
+        {/* 2. Menu Title & Highlights Header */}
+        <div className="w-full px-6 py-10 border-b border-black/10">
+          <motion.h1
+            variants={delayedTextContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-4xl text-[#ebc511] font-extrabold uppercase leading-tight tracking-tight mb-6"
+          >
+            {renderAnimatedText("Explore Our Menu")}
+          </motion.h1>
 
-              <div className="flex flex-col justify-between p-6 md:p-8">
-                <div>
-                  <motion.h3
-                    variants={delayedTextContainerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="mt-3 text-xl font-extrabold uppercase leading-tight md:text-2xl"
-                  >
-                    {renderAnimatedText(highlights[2].title)}
-                  </motion.h3>
-                </div>
-                <motion.p
-                  variants={delayedTextContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="mt-4 text-xs font-normal leading-relaxed text-black/80 md:text-sm"
-                >
-                  {renderAnimatedText(highlights[2].description)}
-                </motion.p>
-              </div>
-            </div>
-          </div>
+          <motion.h3
+            variants={delayedTextContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-lg font-extrabold uppercase leading-tight mb-2"
+          >
+            {renderAnimatedText(highlights[2].title)}
+          </motion.h3>
 
-          {/* MENU ITEMS */}
+          <motion.p
+            variants={delayedTextContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-sm font-normal leading-relaxed text-black/80"
+          >
+            {renderAnimatedText(highlights[2].description)}
+          </motion.p>
+        </div>
+
+        {/* 3. Vertical Menu Items List */}
+        <div className="flex flex-col">
           {menuItems.map((item) => (
             <div
               key={item.id}
-              className="relative flex h-full w-[85vw] md:w-[33.33vw] flex-shrink-0 flex-col justify-between border-r border-black/10 pt-14 md:pt-20 pb-0 px-4 md:px-5"
+              className="flex flex-col border-b border-black/10 pt-10 pb-6 px-6"
             >
-              <div className="z-10 flex flex-col items-center gap-2 md:gap-4 text-center">
-                <motion.p
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="max-w-xs text-[11px] md:text-sm font-medium leading-relaxed tracking-wide text-gray-700"
-                >
-                  {renderAnimatedText(`"${item.description}"`)}
-                </motion.p>
+              <div className="flex flex-col items-center text-center gap-3 mb-6">
                 <motion.h2
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-black"
+                  className="text-3xl font-black uppercase tracking-tighter text-black"
                 >
                   {renderAnimatedText(item.name)}
                 </motion.h2>
+
+                <motion.p
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="max-w-xs text-xs font-medium leading-relaxed tracking-wide text-gray-700"
+                >
+                  {renderAnimatedText(`"${item.description}"`)}
+                </motion.p>
               </div>
 
-              <div className="relative mt-auto h-[60vh] md:h-[70vh] w-full overflow-hidden">
+              <div className="relative w-full h-[45vh] overflow-hidden rounded-xs bg-gray-100">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
                   className="object-cover object-top"
+                  sizes="100vw"
                 />
               </div>
             </div>
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* DESKTOP LAYOUT: Horizontal Scroll */}
+      <section ref={targetRef} className="hidden md:block relative h-[400vh]">
+        <div className="sticky top-0 flex h-screen w-screen items-center overflow-hidden">
+          <motion.div style={{ x }} className="flex h-full">
+            <div className="relative flex h-full w-screen flex-shrink-0">
+              <motion.div
+                variants={imageRevealVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="relative h-full w-[40vw] border-r border-black/10 overflow-hidden bg-black"
+              >
+                <Image
+                  src="/yellow_chef_three.jpg"
+                  alt="Architecture Hero"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </motion.div>
+
+              <div className="grid h-full w-[60vw] grid-cols-2 grid-rows-2 border-black/10 text-black">
+                <div className="col-span-2 border-b border-black/10 p-8 md:p-12">
+                  <motion.h1
+                    variants={delayedTextContainerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="text-5xl text-[#ebc511] font-extrabold uppercase leading-none tracking-tight md:text-[8vw]"
+                  >
+                    {renderAnimatedText("Explore Our Menu")}
+                  </motion.h1>
+                </div>
+
+                <div className="flex flex-col justify-between p-6 md:p-8">
+                  <div>
+                    <motion.h3
+                      variants={delayedTextContainerVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="mt-3 text-xl font-extrabold uppercase leading-tight md:text-2xl"
+                    >
+                      {renderAnimatedText(highlights[2].title)}
+                    </motion.h3>
+                  </div>
+                  <motion.p
+                    variants={delayedTextContainerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="mt-4 text-xs font-normal leading-relaxed text-black/80 md:text-sm"
+                  >
+                    {renderAnimatedText(highlights[2].description)}
+                  </motion.p>
+                </div>
+              </div>
+            </div>
+
+            {menuItems.map((item) => (
+              <div
+                key={item.id}
+                className="relative flex h-full w-[33.33vw] flex-shrink-0 flex-col justify-between border-r border-black/10 pt-20 pb-0 px-5"
+              >
+                <div className="z-10 flex flex-col items-center gap-4 text-center">
+                  <motion.p
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="max-w-xs text-sm font-medium leading-relaxed tracking-wide text-gray-700"
+                  >
+                    {renderAnimatedText(`"${item.description}"`)}
+                  </motion.p>
+                  <motion.h2
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="text-5xl font-black uppercase tracking-tighter text-black"
+                  >
+                    {renderAnimatedText(item.name)}
+                  </motion.h2>
+                </div>
+
+                <div className="relative mt-auto h-[70vh] w-full overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+    </>
   );
 }
