@@ -142,7 +142,8 @@ export default function Hero() {
             className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:blur-sm group-hover:scale-105"
             poster="/yellow_chef.jpg"
           >
-            <source src="/cooking.mp4" type="video/mp4" />
+            <source src="/cooking.webm" type="video/webm" />
+            <source src="/cooking-optimized.mp4" type="video/mp4" />
           </video>
         </div>
       </motion.div>
